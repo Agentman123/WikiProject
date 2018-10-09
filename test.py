@@ -9,7 +9,6 @@ training = []
 test = []
 data = []
 dataFlag = []
-#print("hello world")
 with open('datatotal.csv') as csv_file:
     data_csv_reader = csv.reader(csv_file, delimiter=',')
     dataLine = 0
