@@ -6,6 +6,7 @@ test = []
 data = []
 dataFlag = []
 
+
 for i in range(1, 11):
     with open('data' + str(i) + '.csv') as csv_file:
         data_csv_reader = csv.reader(csv_file, delimiter=',')
