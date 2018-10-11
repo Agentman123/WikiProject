@@ -1,5 +1,5 @@
 from revscoring.features import wikitext, revision_oriented, temporal
-from revscoring.languages import english
+#from revscoring.languages import english
 from revscoring.extractors import api
 import revscoring
 import mwapi
@@ -23,11 +23,11 @@ features = [
   # Measures the size of the change in removed words
     wikitext.revision.diff.words_removed,
   # Measures the proportional change in "badwords"
-    english.badwords.revision.diff.match_prop_delta_sum,
+#    english.badwords.revision.diff.match_prop_delta_sum,
   # Measures the proportional change in "informals"
-    english.informals.revision.diff.match_prop_delta_sum,
+#    english.informals.revision.diff.match_prop_delta_sum,
   # Measures the proportional change meaningful words
-    english.stopwords.revision.diff.non_stopword_prop_delta_sum,
+#    english.stopwords.revision.diff.non_stopword_prop_delta_sum,
   # Is the user anonymous
     revision_oriented.revision.user.is_anon,
   # Is the user a bot or a sysop
