@@ -6,7 +6,6 @@ test = []
 data = []
 dataFlag = []
 
-
 for i in range(1, 11):
     with open('data' + str(i) + '.csv') as csv_file:
         data_csv_reader = csv.reader(csv_file, delimiter=',')
@@ -27,24 +26,6 @@ for x in range(len(data)):
     if dataFlag[x] == 'False':
         dataFlag[x] = 'True'
         test.append(data[x])
-
-#for i in range(1, 8):
- #   with open('data' + str(i) + '.csv') as csv_file:
-  #      training_csv_reader = csv.reader(csv_file, delimiter=',')
-   #     trainingLine = 0
-    #    for row in training_csv_reader:
-     #       if trainingLine % 2 == 0:
-      #          training.append(row)
-       #     trainingLine += 1
-
-#for i in range(8, 11):
- #   with open('data' + str(i) + '.csv') as csv_file:
-  #      test_csv_reader = csv.reader(csv_file, delimiter=',')
-   #     testLine = 0
-    #    for row in test_csv_reader:
-     #       if testLine % 2 == 0:
-      #          test.append(row)
-       #     testLine += 1
 
 print(len(training))
 print(len(test))
