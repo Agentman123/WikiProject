@@ -1,7 +1,7 @@
-from revscoring.features import wikitext, revision_oriented, temporal
-from revscoring.languages import english
-from revscoring.extractors import api
-import mwreverts.api
+#from revscoring.features import wikitext, revision_oriented, temporal
+#from revscoring.languages import english
+#from revscoring.extractors import api
+import revscoring
 import mwapi
 import csv
 
