@@ -15,7 +15,6 @@ def fileopen(file):
     return filelist
 
 session = mwapi.Session("https://en.wikipedia.org")
-
 features = [
   # Catches long key mashes like kkkkkkkkkkkk
     wikitext.revision.diff.longest_repeated_char_added,
