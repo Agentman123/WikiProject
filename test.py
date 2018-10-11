@@ -1,6 +1,6 @@
-#from revscoring.features import wikitext, revision_oriented, temporal
-#from revscoring.languages import english
-#from revscoring.extractors import api
+from revscoring.features import wikitext, revision_oriented, temporal
+from revscoring.languages import english
+from revscoring.extractors import api
 import revscoring
 import mwapi
 import csv
@@ -9,11 +9,9 @@ def fileopen(file):
     filelist = []
     with open(str(file)) as csv_file:
         data_csv_reader = csv.reader(csv_file, delimiter=',')
-        dataLine = 0
         for row in data_csv_reader:
-            if dataLine % 2 == 0:
+            if row != []:
                 filelist.append(row)
-            dataLine += 1
     return filelist
 
 session = mwapi.Session("https://en.wikipedia.org")
