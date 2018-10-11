@@ -12,9 +12,8 @@ for i in range(1, 11):
         data_csv_reader = csv.reader(csv_file, delimiter=',')
         dataLine = 0
         for row in data_csv_reader:
-            if dataLine % 2 == 0:
-                data.append(row)
-                dataFlag.append('False')
+            data.append(row)
+            dataFlag.append('False')
             dataLine += 1
 
 while len(training) != int(len(data) * .75):
