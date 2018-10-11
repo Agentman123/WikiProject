@@ -10,12 +10,10 @@ dataFlag = []
 for i in range(1, 11):
     with open('data' + str(i) + '.csv') as csv_file:
         data_csv_reader = csv.reader(csv_file, delimiter=',')
-        dataLine = 0
         for row in data_csv_reader:
-            if dataLine % 2 == 0:
+            if row != []:
                 data.append(row)
                 dataFlag.append('False')
-            dataLine += 1
 
 while len(training) != int(len(data) * .75):
     indexNum = random.randint(0, len(data) - 1)
