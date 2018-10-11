@@ -56,15 +56,15 @@ test_revert = 0
 test_no_revert = 0
 
 for train in range(len(training)):
-    if training[train][3] == 'False':
+    if training[train][6] == 'False':
         training_no_revert += 1
-    elif training[train][3] == 'True':
+    elif training[train][6] == 'True':
         training_revert += 1
 
 for t in range(len(test)):
-    if test[t][3] == 'False':
+    if test[t][6] == 'False':
         test_no_revert += 1
-    elif test[t][3] == 'True':
+    elif test[t][6] == 'True':
         test_revert += 1
 
 print(training_revert)
@@ -75,9 +75,17 @@ print(test_revert)
 print(test_no_revert)
 print(round(((test_revert / len(test)) * 100), 2))
 print(round(((test_no_revert / len(test)) * 100), 2))
-print(training)
-print(test)
+print(len(training))
+print(len(test))
 with open('datatotal.csv', mode='w') as file:
     writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     for i in range(len(data)):
         writer.writerow(data[i])
+with open('datatraining.csv', mode='w') as file:
+    writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    for j in range(len(training)):
+        writer.writerow(training[j])
+with open('datatest.csv', mode='w') as file:
+    writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    for k in range(len(test)):
+        writer.writerow(test[k])

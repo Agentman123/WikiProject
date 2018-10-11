@@ -17,7 +17,7 @@ for i in range(20000):
 session = mwapi.Session("https://en.wikipedia.org")
 rev_reverteds = []
 
-for rev_id in revids[10000:12000]:  # NOTE: Limiting to sets of 2000
+for rev_id in revids[18000:20000]:  # NOTE: Limiting to sets of 2000
     try:
         _, reverted, reverted_to = mwreverts.api.check(
             session, rev_id, radius=5,  # most reverts within 5 edits
@@ -77,7 +77,7 @@ for rev_id in revids[10000:12000]:  # NOTE: Limiting to sets of 2000
             #Before Rev, Before User, Current Rev, Current User, After Rev, After User
     sys.stderr.write("r" if damaging_reverted else ".")
 
-with open('data6.csv', mode='w') as file:
+with open('data10.csv', mode='w') as file:
     writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     for i in range(len(rev_reverteds)):
         try:
