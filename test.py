@@ -5,15 +5,15 @@ import revscoring
 import mwapi
 import csv
 
-"""def fileopen(file):
+def fileopen(file):
     filelist = []
     with open(str(file)) as csv_file:
         data_csv_reader = csv.reader(csv_file, delimiter=',')
         for row in data_csv_reader:
             if row != []:
-                filelist.append(row)
+                filelist.append(row[1])
     return filelist
-"""
+
 session = mwapi.Session("https://en.wikipedia.org")
 features = [
   # Catches long key mashes like kkkkkkkkkkkk
@@ -39,30 +39,37 @@ features = [
 trainingRevId = []
 testRevId = []
 api_extractor = api.Extractor(session)
+"""
 sample = []
 with open('datasample.csv') as csv_file:
     data_csv_reader = csv.reader(csv_file, delimiter=',')
     for row in data_csv_reader:
         if row != []:
-            sample.append(row)
-for id in sample:
-    revid = sample[id][1]
+            sample.append(row[1])
+        
+for revid in sample:
+    revid = int(revid)
     print("https://en.wikipedia.org/wiki/?diff={0}".format(revid))
     print(list(api_extractor.extract(revid, features)))
-"""training = fileopen('datatraining.csv')
+"""
+training = fileopen('datatraining.csv')
 test = fileopen('datatest.csv')
 
 for i in range(len(training)):
-    trainingRevId.append(training[i][2])
-
+    trainingRevId.append(training[i])
+#print(trainingRevId)
 for j in range(len(test)):
-    testRevId.append(test[j][2])
-print(trainingRevId)
-print(testRevId)
+    testRevId.append(test[j])
+#print(testRevId)
 for revTrainId in trainingRevId:
-    print("https://en.wikipedia.org/wiki/?diff={0}".format(revTrainId))
-    print(list(api_extractor.extract(revTrainId, features)))
-for revTestId in testRevId:
+    revTrainId = int(revTrainId)
+    try:
+        print("https://en.wikipedia.org/wiki/?diff={0}".format(revTrainId))
+        print(list(api_extractor.extract(revTrainId, features)))
+    except:
+        print('Revision Not Found')
+        continue
+"""for revTestId in testRevId:
+    revTestId = int(revTestId)
     print("https://en.wikipedia.org/wiki/?diff={0}".format(revTestId))
-    print(list(api_extractor.extract(revTestId, features)))
-"""
+    print(list(api_extractor.extract(revTestId, features)))"""
