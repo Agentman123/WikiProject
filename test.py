@@ -46,6 +46,7 @@ with open('datasample.csv') as csv_file:
         if row != []:
             sample.append(row)
 for id in sample:
+    revid = id[1]
     print("https://en.wikipedia.org/wiki/?diff={0}".format(id))
     print(list(api_extractor.extract(id, features)))
 """training = fileopen('datatraining.csv')
