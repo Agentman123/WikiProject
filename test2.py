@@ -55,32 +55,14 @@ for rev_id in revids[18000:20000]:  # NOTE: Limiting to sets of 2000
         damaging_reverted = False
 
     if reverted is None:
-        rev_reverteds.append(('N/A', 'N/A',  rev_id, 'N/A', 'N/A', 'N/A', damaging_reverted)) #Before Rev, Current Rev, After Rev
+        rev_reverteds.append(('N/A', rev_id, 'N/A', damaging_reverted)) #Before Rev, Current Rev, After Rev
     elif reverted is not None:
-        revertedsUser = reverted.reverteds[0]['user']
-        revertingUser = reverted.reverting['user']
-        reverted_toUser = reverted.reverted_to['user']
-        if type(revertedsUser) == type(''):
-            revertedsDecode = revertedsUser
-        elif type(revertedsUser) == type(b'\x00'):
-            revertedsDecode = revertedsUser.decode('utf-8')
-        if type(revertingUser) == type(''):
-            revertingDecode = revertingUser
-        elif type(revertingUser) == type(b'\x00'):
-            revertingDecode = revertingUser.decode('utf-8')
-        if type(reverted_toUser) == type(''):
-            reverted_toDecode = reverted_toUser
-        elif type(reverted_toUser) == type(b'\x00'):
-            reverted_toDecode = reverted_toUser.decode('utf-8')
 
-        rev_reverteds.append((reverted.reverteds[0]['parentid'], revertedsDecode, reverted.reverting['revid'], revertingDecode, reverted.reverting['revid'], reverted_toDecode, damaging_reverted))
+        rev_reverteds.append((reverted.reverteds[0]['parentid'], reverted.reverting['revid'], reverted.reverting['revid'], damaging_reverted))
             #Before Rev, Before User, Current Rev, Current User, After Rev, After User
     sys.stderr.write("r" if damaging_reverted else ".")
 
 with open('data10.csv', mode='w') as file:
     writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     for i in range(len(rev_reverteds)):
-        try:
-            writer.writerow(rev_reverteds[i])
-        except UnicodeEncodeError:
-            writer.writerow((rev_reverteds[i][0], 'N/A', rev_reverteds[i][2], 'N/A', rev_reverteds[i][4], 'N/A', rev_reverteds[i][6]))
+        writer.writerow(rev_reverteds[i])

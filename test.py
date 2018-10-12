@@ -5,7 +5,7 @@ import revscoring
 import mwapi
 import csv
 
-def fileopen(file):
+"""def fileopen(file):
     filelist = []
     with open(str(file)) as csv_file:
         data_csv_reader = csv.reader(csv_file, delimiter=',')
@@ -13,7 +13,7 @@ def fileopen(file):
             if row != []:
                 filelist.append(row)
     return filelist
-
+"""
 session = mwapi.Session("https://en.wikipedia.org")
 features = [
   # Catches long key mashes like kkkkkkkkkkkk
@@ -39,8 +39,16 @@ features = [
 trainingRevId = []
 testRevId = []
 api_extractor = api.Extractor(session)
-
-training = fileopen('datatraining.csv')
+sample = []
+with open('datasample.csv') as csv_file:
+    data_csv_reader = csv.reader(csv_file, delimiter=',')
+    for row in data_csv_reader:
+        if row != []:
+            sample.append(row)
+for id in sample:
+    print("https://en.wikipedia.org/wiki/?diff={0}".format(id))
+    print(list(api_extractor.extract(id, features)))
+"""training = fileopen('datatraining.csv')
 test = fileopen('datatest.csv')
 
 for i in range(len(training)):
@@ -56,3 +64,4 @@ for revTrainId in trainingRevId:
 for revTestId in testRevId:
     print("https://en.wikipedia.org/wiki/?diff={0}".format(revTestId))
     print(list(api_extractor.extract(revTestId, features)))
+"""

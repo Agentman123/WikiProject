@@ -35,15 +35,15 @@ test_revert = 0
 test_no_revert = 0
 
 for train in range(len(training)):
-    if training[train][6] == 'False':
+    if training[train][3] == 'False':
         training_no_revert += 1
-    elif training[train][6] == 'True':
+    elif training[train][3] == 'True':
         training_revert += 1
 
 for t in range(len(test)):
-    if test[t][6] == 'False':
+    if test[t][3] == 'False':
         test_no_revert += 1
-    elif test[t][6] == 'True':
+    elif test[t][3] == 'True':
         test_revert += 1
 
 print(training_revert)
