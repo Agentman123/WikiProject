@@ -58,18 +58,25 @@ test = fileopen('datatest.csv')
 for i in range(len(training)):
     trainingRevId.append(training[i])
 #print(trainingRevId)
+
 for j in range(len(test)):
     testRevId.append(test[j])
 #print(testRevId)
+
 for revTrainId in trainingRevId:
     revTrainId = int(revTrainId)
     try:
         print("https://en.wikipedia.org/wiki/?diff={0}".format(revTrainId))
         print(list(api_extractor.extract(revTrainId, features)))
     except:
-        print('Revision Not Found')
+        print('Revision Data Not Found')
         continue
-"""for revTestId in testRevId:
+
+for revTestId in testRevId:
     revTestId = int(revTestId)
-    print("https://en.wikipedia.org/wiki/?diff={0}".format(revTestId))
-    print(list(api_extractor.extract(revTestId, features)))"""
+    try:
+        print("https://en.wikipedia.org/wiki/?diff={0}".format(revTestId))
+        print(list(api_extractor.extract(revTestId, features)))
+    except:
+        print('Revision Data Not Found')
+        continue
