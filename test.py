@@ -4,6 +4,7 @@ from revscoring.extractors import api
 from revscoring.utilities.util import read_observations
 import mwapi
 import csv
+import json
 
 def fileopen(file):
     filelist = []
@@ -55,10 +56,11 @@ for revid in sample:
         #print("https://en.wikipedia.org/wiki/?diff={0}".format(revid))
         sampleRevData = list(api_extractor.extract(revid, features))
         sampleObserv = {"rev_id": revid, "cashe": sampleRevData}
-        sampleData.append(sampleObserv)
     except:
         print('Revision Data Not Found')
         continue
+    sampleObserv = json.dumps(sampleObserv)
+    sampleData.append(sampleObserv)
 #sampleFeatures = read_observations(sampleData)
 for samples in read_observations(sampleData):
     #sampleInfo.append(samples)
