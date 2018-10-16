@@ -1,7 +1,7 @@
 from revscoring.features import wikitext, revision_oriented, temporal
 from revscoring.languages import english
 from revscoring.extractors import api
-from revscoring.utilities.util import read_observations
+#from revscoring.utilities.util import read_observations
 import mwapi
 import csv
 
@@ -39,7 +39,7 @@ features = [
 trainingRevId = []
 testRevId = []
 api_extractor = api.Extractor(session)
-
+"""
 sample = []
 with open('datasample.csv') as csv_file:
     data_csv_reader = csv.reader(csv_file, delimiter=',')
@@ -86,8 +86,8 @@ for revTrainId in trainingRevId:
     except:
         print('Revision Data Not Found')
         continue
-trainingFeatures = read_observations(trainingData)
-print(trainingFeatures)
+#trainingFeatures = read_observations(trainingData)
+#print(trainingFeatures)
 
 testData = []
 for revTestId in testRevId:
@@ -100,9 +100,9 @@ for revTestId in testRevId:
     except:
         print('Revision Data Not Found')
         continue
-testFeatures = read_observations(testData)
-print(testFeatures)
-"""
-print(sampleData)
-#print(trainingData)
-#print(testData)
+#testFeatures = read_observations(testData)
+#print(testFeatures)
+
+#print(sampleData)
+print(trainingData)
+print(testData)
