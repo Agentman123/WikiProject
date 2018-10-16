@@ -48,6 +48,7 @@ with open('datasample.csv') as csv_file:
             sample.append(row[1])
 
 sampleData = []
+#sampleInfo = []
 for revid in sample:
     revid = int(revid)
     try:
@@ -58,7 +59,9 @@ for revid in sample:
     except:
         print('Revision Data Not Found')
         continue
-sampleFeatures = read_observations(sampleData)
+#sampleFeatures = read_observations(sampleData)
+#for samples in sampleFeatures:
+#    sampleInfo.append(samples)
 
 """
 training = fileopen('datatraining.csv')
@@ -100,6 +103,6 @@ for revTestId in testRevId:
 testFeatures = read_observations(testData)
 print(testFeatures)
 """
-print(sampleFeatures)
+print(sampleData)
 #print(trainingData)
 #print(testData)
