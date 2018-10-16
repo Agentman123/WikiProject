@@ -39,7 +39,7 @@ features = [
 trainingRevId = []
 testRevId = []
 api_extractor = api.Extractor(session)
-"""
+
 sample = []
 with open('datasample.csv') as csv_file:
     data_csv_reader = csv.reader(csv_file, delimiter=',')
@@ -53,11 +53,14 @@ for revid in sample:
     try:
         #print("https://en.wikipedia.org/wiki/?diff={0}".format(revid))
         sampleRevData = list(api_extractor.extract(revid, features))
-        sampleObserv = {"rev_id": revid, "cashe": sampleRevData
+        sampleObserv = {"rev_id": revid, "cashe": sampleRevData}
         sampleData.append(sampleObserv)
     except:
-        print('Revision Data Not Found)
+        print('Revision Data Not Found')
         continue
+sampleFeatures = read_observations(sampleData)
+print(sampleFeatures)
+
 """
 training = fileopen('datatraining.csv')
 test = fileopen('datatest.csv')
@@ -81,6 +84,8 @@ for revTrainId in trainingRevId:
     except:
         print('Revision Data Not Found')
         continue
+trainingFeatures = read_observations(trainingData)
+print(trainingFeatures)
 
 testData = []
 for revTestId in testRevId:
@@ -93,7 +98,9 @@ for revTestId in testRevId:
     except:
         print('Revision Data Not Found')
         continue
-
-#print(sampleData)
-print(trainingData)
-print(testData)
+testFeatures = read_observations(testData)
+print(testFeatures)
+"""
+print(sampleData)
+#print(trainingData)
+#print(testData)
