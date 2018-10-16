@@ -59,7 +59,6 @@ for revid in sample:
         print('Revision Data Not Found')
         continue
 sampleFeatures = read_observations(sampleData)
-print(sampleFeatures)
 
 """
 training = fileopen('datatraining.csv')
@@ -101,6 +100,6 @@ for revTestId in testRevId:
 testFeatures = read_observations(testData)
 print(testFeatures)
 """
-print(sampleData)
+print(sampleFeatures)
 #print(trainingData)
 #print(testData)
