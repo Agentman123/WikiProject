@@ -85,12 +85,14 @@ for revTrainId in trainingRevId:
         #print("https://en.wikipedia.org/wiki/?diff={0}".format(revTrainId))
         trainingRevData = list(api_extractor.extract(revTrainId, features))
         trainingObserv = {"rev_id": revTrainId, "cache": trainingRevData}
-        trainingData.append(trainingObserv)
     except:
         print('Revision Data Not Found')
         continue
-#trainingFeatures = read_observations(trainingData)
-#print(trainingFeatures)
+    trainingObserv = json.dumps(trainingObserv)
+    trainingData.append(trainingObserv)
+
+for trainings in read_observations(trainingData):
+    trainingInfo.append(trainings)
 
 testData = []
 testInfo = []
@@ -100,13 +102,16 @@ for revTestId in testRevId:
         #print("https://en.wikipedia.org/wiki/?diff={0}".format(revTestId))
         testRevData = list(api_extractor.extract(revTestId, features))
         testObserv = {"rev_id": revTestId, "cache": testRevData}
-        testData.append(testObserv)
     except:
         print('Revision Data Not Found')
         continue
-#testFeatures = read_observations(testData)
-#print(testFeatures)
+    testObserv = json.dumps(testObserv)
+    testData.append(testObserv)
+
+for tests in read_observations(testData):
+    testInfo.append(tests)
+
 #"""
-print(sampleInfo)
-#print(trainingData)
-#print(testData)
+#print(sampleInfo)
+print(trainingInfo)
+print(testInfo)
