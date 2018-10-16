@@ -61,8 +61,8 @@ for revid in sample:
         continue
 #sampleFeatures = read_observations(sampleData)
 for samples in read_observations(sampleData):
-    sampleInfo.append(samples)
-
+    #sampleInfo.append(samples)
+    print(samples)
 """
 training = fileopen('datatraining.csv')
 test = fileopen('datatest.csv')
