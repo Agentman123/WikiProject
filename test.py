@@ -111,7 +111,17 @@ for revTestId in testRevId:
 for tests in read_observations(testData):
     testInfo.append(tests)
 
+with open('TrainingInfo.csv', mode='w') as file:
+    writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    for i in range(len(trainingInfo)):
+        writer.writerow(trainingInfo[i])
+
+with open('TestInfo.csv', mode='w') as file:
+    writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    for i in range(len(testInfo)):
+        writer.writerow(testInfo[i])
 #"""
+
 #print(sampleInfo)
 print(trainingInfo)
 print(testInfo)
