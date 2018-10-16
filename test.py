@@ -40,7 +40,7 @@ features = [
 trainingRevId = []
 testRevId = []
 api_extractor = api.Extractor(session)
-#"""
+"""
 sample = []
 with open('datasample.csv') as csv_file:
     data_csv_reader = csv.reader(csv_file, delimiter=',')
@@ -49,7 +49,7 @@ with open('datasample.csv') as csv_file:
             sample.append(row[1])
 
 sampleData = []
-#sampleInfo = []
+sampleInfo = []
 for revid in sample:
     revid = int(revid)
     try:
@@ -61,10 +61,10 @@ for revid in sample:
         continue
     sampleObserv = json.dumps(sampleObserv)
     sampleData.append(sampleObserv)
-#sampleFeatures = read_observations(sampleData)
+
 for samples in read_observations(sampleData):
-    #sampleInfo.append(samples)
-    print(samples)
+    sampleInfo.append(samples)
+
 """
 training = fileopen('datatraining.csv')
 test = fileopen('datatest.csv')
@@ -78,6 +78,7 @@ for j in range(len(test)):
 #print(testRevId)
 
 trainingData = []
+trainingInfo = []
 for revTrainId in trainingRevId:
     revTrainId = int(revTrainId)
     try:
@@ -92,6 +93,7 @@ for revTrainId in trainingRevId:
 #print(trainingFeatures)
 
 testData = []
+testInfo = []
 for revTestId in testRevId:
     revTestId = int(revTestId)
     try:
@@ -104,7 +106,7 @@ for revTestId in testRevId:
         continue
 #testFeatures = read_observations(testData)
 #print(testFeatures)
-"""
-#print(sampleData)
-print(trainingData)
-print(testData)
+#"""
+print(sampleInfo)
+#print(trainingData)
+#print(testData)
