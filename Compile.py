@@ -27,6 +27,7 @@ for x in range(len(data)):
         dataFlag[x] = 'True'
         test.append(data[x])
 
+print(len(data))
 print(len(training))
 print(len(test))
 training_revert = 0
@@ -56,15 +57,20 @@ print(round(((test_revert / len(test)) * 100), 2))
 print(round(((test_no_revert / len(test)) * 100), 2))
 print(len(training))
 print(len(test))
+
+"""
 with open('datatotal.csv', mode='w') as file:
     writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     for i in range(len(data)):
         writer.writerow(data[i])
+
 with open('datatraining.csv', mode='w') as file:
     writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     for j in range(len(training)):
         writer.writerow(training[j])
+
 with open('datatest.csv', mode='w') as file:
     writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     for k in range(len(test)):
         writer.writerow(test[k])
+"""

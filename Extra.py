@@ -1,11 +1,12 @@
 #Wiki Page Scraping
+
 import csv
 import random
 import requests
 import mwreverts
 import mwapi
 from lxml import html
-
+"""
 training = []
 test = []
 data = []
@@ -39,6 +40,16 @@ while 'False' in dataFlag:
             current.append(line)
         print(current[0])
         print(current[1])
-        #print(beforeWiki.text)
-        #print(currentWiki.text)
-        #print(afterWiki.text)
+"""
+
+#Basic text finding in HTML code through url requests
+"""import urllib
+
+urllink = "https://en.wikipedia.org/?diff=864339562"
+r = urllib.request.urlopen(urllink)
+url = r.read()
+url = url.decode('utf-8')
+start = url.find('<table')
+end = url.find('</table>')
+print(url[start:end])
+"""
