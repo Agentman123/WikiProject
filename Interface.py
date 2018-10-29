@@ -23,14 +23,11 @@ except (RuntimeError, KeyError) as e:
 
 if reverted is not None:
     reverted_doc = [r for r in reverted.reverteds if r['revid'] == revid][0]
-
     if 'user' not in reverted_doc or 'user' not in reverted.reverting:
-
+        print()
     self_revert = reverted_doc['user'] == reverted.reverting['user']
-
     # revisions that are reverted back to by others
     reverted_back_to = reverted_to is not None and 'user' in reverted_to.reverting and reverted_doc['user'] != reverted_to.reverting['user']
-
     # If we are reverted, not by self or reverted back to by someone else,
     # then, let's assume it was damaging.
     damaging_reverted = not (self_revert or reverted_back_to)
