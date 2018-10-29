@@ -8,23 +8,25 @@ import json
 import sys, traceback
 import mwreverts.api
 
-revid = random.randint(60000000, 90000000)
-url = 'https://en.wikipedia.org/?diff={0}'.format(revid)
 session = mwapi.Session('https://en.wikipedia.org')
 rev_reverteds = []
-
-try:
-    _, reverted, reverted_to = mwreverts.api.check(
-        session, revid, radius=5,  # most reverts within 5 edits
-        window=48 * 60 * 60,  # 2 days
-        rvprop={'user', 'ids'})  # Some properties we'll make use of
-except (RuntimeError, KeyError) as e:
-    sys.stderr.write(str(e))
-
+flag = True
+while flag == True:
+    revid = random.randint(700000000, 900000000)
+    try:
+        _, reverted, reverted_to = mwreverts.api.check(
+            session, revid, radius=5,  # most reverts within 5 edits
+            window=48 * 60 * 60,  # 2 days
+            rvprop={'user', 'ids'})  # Some properties we'll make use of
+        flag = False
+    except (RuntimeError, KeyError) as e:
+        sys.stderr.write(str(e))
+        print('Revision ID ' + str(revid) + ' does not exist')
+    
 if reverted is not None:
     reverted_doc = [r for r in reverted.reverteds if r['revid'] == revid][0]
     if 'user' not in reverted_doc or 'user' not in reverted.reverting:
-        print()
+        None
     self_revert = reverted_doc['user'] == reverted.reverting['user']
     # revisions that are reverted back to by others
     reverted_back_to = reverted_to is not None and 'user' in reverted_to.reverting and reverted_doc['user'] != reverted_to.reverting['user']
@@ -33,7 +35,7 @@ if reverted is not None:
     damaging_reverted = not (self_revert or reverted_back_to)
 else:
     damaging_reverted = False
-
+    
 if reverted is None:
     rev_reverteds.append(('N/A', revid, 'N/A', damaging_reverted))  # Before Rev, Current Rev, After Rev
 elif reverted is not None:
@@ -66,10 +68,12 @@ features = [
 
 api_extractor = api.Extractor(session)
 try:
-    revData = list(api_extractor.extract(url, features))
+    revData = list(api_extractor.extract(revid, features))
     revObserv = {"rev_id": revid, "cache": revData}
 except:
     print('Revision Data Not Found')
 
-revObserv = json.dumps(revObserv)
-print(revObserv)
+#revObserv = json.dumps(revObserv)
+#print(type(revObserv))
+print(revObserv['rev_id'])
+print(revObserv['cache'])
