@@ -20,7 +20,7 @@ while flag == True:
             rvprop={'user', 'ids'})  # Some properties we'll make use of
         flag = False
     except (RuntimeError, KeyError) as e:
-        sys.stderr.write(str(e))
+        #sys.stderr.write(str(e))
         print('Revision ID ' + str(revid) + ' does not exist')
     
 if reverted is not None:
@@ -43,7 +43,7 @@ elif reverted is not None:
     rev_reverteds.append((reverted.reverteds[0]['parentid'], reverted.reverting['revid'], reverted.reverting['revid'],
                           damaging_reverted))
     # Before Rev, Before User, Current Rev, Current User, After Rev, After User
-sys.stderr.write("r" if damaging_reverted else ".")
+#sys.stderr.write("r" if damaging_reverted else ".")
 
 features = [
   # Catches long key mashes like kkkkkkkkkkkk
