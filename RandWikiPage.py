@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import sys, urllib2, re, string, time, threading
+import sys, urllib2, re, string, time, threading, csv
 
 def get_random_wikipedia_article():
     """
@@ -31,7 +31,7 @@ def get_random_wikipedia_article():
         articletitle = None
         failed = False
         try:
-            req = urllib2.Request('http://en.wikipedia.org/wiki/Special:Random',
+            req = urllib2.Request('http://en.wikipedia.org/wiki/%s' %(title),
                                   None, { 'User-Agent' : 'x'})
             f = urllib2.urlopen(req)
             while not articletitle:
@@ -112,6 +112,24 @@ def get_random_wikipedia_articles(n):
 
 if __name__ == '__main__':
     t0 = time.time()
+    data = []
+    appendflag = False
+    flag = False
+    with open('tor_wikipedia_edits_20181026.tsv') as csv_file:
+        data_csv_reader = csv.reader(csv_file, delimiter=',')
+        for row in data_csv_reader:
+            if row != []:
+                removeList = ['User', 'user:', 'Talk:', 'talk:', 'User talk:', 'User Talk:', 'user Talk:', 'user talk:']
+                for word in removeList:
+                    if word in row[3]
+                        appendflag = False
+                        break
+                    else:
+                        appendflag = True
+                if appendflag == True:
+                    data.append(row)
+                    appendflag = False
+    print(data)
 
     (articles, articlenames) = get_random_wikipedia_articles(1)
     for i in range(0, len(articles)):
