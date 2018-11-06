@@ -116,7 +116,7 @@ if __name__ == '__main__':
     appendflag = False
     flag = False
     with open('tor_wikipedia_edits_20181026.tsv') as csv_file:
-        data_csv_reader = csv.reader(csv_file, delimiter=',')
+        data_csv_reader = csv.reader(csv_file, delimiter='\t')
         for row in data_csv_reader:
             print(row)
             if row != []:
