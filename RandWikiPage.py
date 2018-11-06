@@ -122,7 +122,7 @@ if __name__ == '__main__':
             if row != []:
                 removeList = ['User', 'user:', 'Talk:', 'talk:', 'User talk:', 'User Talk:', 'user Talk:', 'user talk:']
                 for word in removeList:
-                    if word in row[]:
+                    if word in row:
                         appendflag = False
                         break
                     else:
