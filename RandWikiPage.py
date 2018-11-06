@@ -118,10 +118,11 @@ if __name__ == '__main__':
     with open('tor_wikipedia_edits_20181026.tsv') as csv_file:
         data_csv_reader = csv.reader(csv_file, delimiter=',')
         for row in data_csv_reader:
+            print(row)
             if row != []:
                 removeList = ['User', 'user:', 'Talk:', 'talk:', 'User talk:', 'User Talk:', 'user Talk:', 'user talk:']
                 for word in removeList:
-                    if word in row[3]:
+                    if word in row[]:
                         appendflag = False
                         break
                     else:
