@@ -118,19 +118,18 @@ if __name__ == '__main__':
     with open('tor_wikipedia_edits_20181026.tsv') as csv_file:
         data_csv_reader = csv.reader(csv_file, delimiter='\t')
         for row in data_csv_reader:
-            print(row)
             if row != []:
                 removeList = ['User', 'user:', 'Talk:', 'talk:', 'User talk:', 'User Talk:', 'user Talk:', 'user talk:']
                 for word in removeList:
-                    if word in row:
+                    if word in row[3]:
                         appendflag = False
                         break
                     else:
                         appendflag = True
                 if appendflag == True:
                     data.append(row)
+                    print(row)
                     appendflag = False
-    print(data)
 
     (articles, articlenames) = get_random_wikipedia_articles(1)
     for i in range(0, len(articles)):
